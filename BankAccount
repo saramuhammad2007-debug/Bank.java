@@ -1,0 +1,68 @@
+
+public class BankAccount {
+    private int accountNumber;
+    private String accountHolderName;
+    private double balance;
+
+    public BankAccount(int accountNumber,
+                       String accountHolderName,
+                       double balance) {
+        if (accountNumber <= 0 || balance < 0
+                || accountHolderName == null
+                || accountHolderName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Invalid account data");
+        }
+
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getAccountHolderName() {
+        return accountHolderName;
+    }
+
+    public double checkBalance() {
+        return balance;
+    }
+
+    public boolean deposit(double amount) {
+        if (amount <= 0) {
+            return false;
+        }
+
+        balance += amount;
+        return true;
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount <= 0 || amount > balance) {
+            return false;
+        }
+
+        balance -= amount;
+        return true;
+    }
+
+    public boolean transfer(BankAccount receiver, double amount) {
+        if (receiver == null || receiver == this
+                || amount <= 0 || amount > balance) {
+            return false;
+        }
+
+        balance -= amount;
+        receiver.balance += amount;
+        return true;
+    }
+
+    public void displayDetails() {
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Account Holder: " + accountHolderName);
+        System.out.println("Balance: " + balance);
+        System.out.println("-------------------------");
+    }
+}

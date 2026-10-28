@@ -1,0 +1,52 @@
+
+import java.util.ArrayList;
+
+public class Bank {
+    private ArrayList<BankAccount> accounts;
+
+    public Bank() {
+        accounts = new ArrayList<>();
+    }
+
+    public boolean addAccount(BankAccount account) {
+        if (account == null
+                || getAccount(account.getAccountNumber()) != null) {
+            return false;
+        }
+
+        accounts.add(account);
+        return true;
+    }
+
+    public boolean removeAccount(int accountNumber) {
+        BankAccount account = getAccount(accountNumber);
+
+        if (account == null) {
+            return false;
+        }
+
+        accounts.remove(account);
+        return true;
+    }
+
+    public BankAccount getAccount(int accountNumber) {
+        for (BankAccount account : accounts) {
+            if (account.getAccountNumber() == accountNumber) {
+                return account;
+            }
+        }
+
+        return null;
+    }
+
+    public void displayAllAccounts() {
+        if (accounts.isEmpty()) {
+            System.out.println("No accounts found.");
+            return;
+        }
+
+        for (BankAccount account : accounts) {
+            account.displayDetails();
+        }
+    }
+}

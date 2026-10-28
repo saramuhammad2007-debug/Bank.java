@@ -1,0 +1,54 @@
+
+public class Main {
+    public static void main(String[] args) {
+
+        Bank bank = new Bank();
+
+        BankAccount acc1 =
+                new BankAccount(101, "Sara", 1000);
+
+        BankAccount acc2 =
+                new BankAccount(102, "Mona", 500);
+
+        System.out.println(bank.addAccount(acc1));
+        System.out.println(bank.addAccount(acc2));
+
+       
+        BankAccount acc3 =
+                new BankAccount(101, "Ali", 200);
+
+        System.out.println(bank.addAccount(acc3));
+
+        
+        acc1.deposit(200);
+
+        
+        acc1.withdraw(100);
+
+        
+        acc1.transfer(acc2, 300);
+
+        
+        System.out.println("Sara's balance: "
+                + acc1.checkBalance());
+
+        System.out.println("Mona's balance: "
+                + acc2.checkBalance());
+
+        
+        BankAccount found = bank.getAccount(101);
+
+        if (found != null) {
+            found.displayDetails();
+        }
+
+        
+        bank.displayAllAccounts();
+
+       
+        System.out.println(bank.removeAccount(102));
+
+        
+        bank.displayAllAccounts();
+    }
+}
